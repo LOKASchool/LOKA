@@ -575,6 +575,12 @@ function selectRole(r){
   sel.onchange=()=>{ document.getElementById('login-btn').disabled=!sel.value; };
 }
 
+function goHome(){
+  const appVisible=document.getElementById('app-screen').classList.contains('visible');
+  if(appVisible) doLogout();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
 function doLogin(){
   const sel=document.getElementById('user-select');
   if(!sel.value||!STATE.role) return;
@@ -1130,7 +1136,7 @@ const adminViews = {
           ${badge('ongoing','Active')}
         </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
-          <div style="text-align:center;background:var(--Yb);border-radius:6px;padding:10px;"><div style="font-family:var(--fD);font-size:22px;font-weight:900;color:var(--M);">${lessons.length}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;">Lessons</div></div>
+          <div style="text-align:center;background:var(--Yb);border-radius:6px;padding:10px;"><div style="font-family:var(--fD);font-size:22px;font-weight:900;color:var(--M);">${STUDENTS_PER_CLASS[cls]||0}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;">Students</div></div>
           <div style="text-align:center;background:var(--Mb);border-radius:6px;padding:10px;"><div style="font-family:var(--fD);font-size:22px;font-weight:900;color:var(--M);">${assigns.length}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;">Assignments</div></div>
           <div style="text-align:center;background:var(--Yb);border-radius:6px;padding:10px;"><div style="font-family:var(--fD);font-size:22px;font-weight:900;color:var(--M);">${DATA.teachers.filter(t=>t.classes.includes(cls)).length}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;">Teachers</div></div>
         </div>
